@@ -290,6 +290,7 @@
                         <outlet property="resultButtons" destination="YA9-UI-F72" id="Ibg-ny-4T6"/>
                         <outlet property="resultLabel" destination="OaJ-ft-y6S" id="jol-d4-rna"/>
                         <outlet property="saveButton" destination="hDl-4C-kMj" id="hvO-2t-X5g"/>
+                        <outlet property="shakeButton" destination="lvU-xK-gbW" id="SFg-pd-mnf"/>
                         <outlet property="titleLabel" destination="b7r-a4-gcS" id="A3S-fh-eUu"/>
                         <outlet property="typeTextfield" destination="0QH-D6-mKU" id="VgU-fI-uat"/>
                         <outletCollection property="buttonsCollection" destination="crd-Fs-JGh" collectionClass="NSMutableArray" id="C0z-oX-eQc"/>

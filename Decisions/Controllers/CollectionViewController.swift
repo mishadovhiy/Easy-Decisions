@@ -23,6 +23,7 @@ class CollectionViewController: UIViewController {
     @IBOutlet var buttonsCollection: [UIButton]!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var shakeButton: UIButton!
     
     var editingIndex: Int? = nil
     var arr = [""]
@@ -99,8 +100,20 @@ class CollectionViewController: UIViewController {
             titleLabel.textColor = UIColor.lightGray
         }
         
+        toggleShakeButton()
         
-        
+    }
+    
+    func toggleShakeButton(duration: TimeInterval = 4.0) {
+        if arr.count > 1 {
+            UIView.animate(withDuration: 0.4) {
+                self.shakeButton.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 0, 0)
+            }
+        } else {
+            UIView.animate(withDuration: 0.6) {
+                self.shakeButton.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -200, 0)
+            }
+        }
     }
     
     func showResult(show:Bool, duration: Double = 0.0) {
@@ -159,6 +172,7 @@ class CollectionViewController: UIViewController {
                 arr[editingIndex!] = textField.text ?? ""
                 if (textField.text ?? "").count == 0 {
                     arr.remove(at: editingIndex ?? 0)
+                    toggleShakeButton()
                     editingIndex = nil
                     performEditing()
                 }
@@ -437,6 +451,7 @@ class CollectionViewController: UIViewController {
             arr.append(textField.text ?? "")
             collectionView.reloadData()
             typeTextfield.text = ""
+            toggleShakeButton()
             
             if selectedCategory != "New" {
                 performEditing()
