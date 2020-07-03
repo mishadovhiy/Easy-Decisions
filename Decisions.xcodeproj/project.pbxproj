@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D2A8044249F7CDE00A9539E /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2A8043249F7CDE00A9539E /* CollectionViewController.swift */; };
+		8D91B62324AF2FA200899B3F /* Constance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91B62224AF2FA200899B3F /* Constance.swift */; };
 		8DBD930A24926ADF00CE95C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD930924926ADF00CE95C5 /* AppDelegate.swift */; };
 		8DBD930C24926ADF00CE95C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBD930B24926ADF00CE95C5 /* SceneDelegate.swift */; };
 		8DBD931124926ADF00CE95C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DBD930F24926ADF00CE95C5 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		8D2A8043249F7CDE00A9539E /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		8D91B62224AF2FA200899B3F /* Constance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constance.swift; sourceTree = "<group>"; };
 		8DBD930624926ADF00CE95C5 /* Decisions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Decisions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBD930924926ADF00CE95C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DBD930B24926ADF00CE95C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				8DBD931724926AE100CE95C5 /* LaunchScreen.storyboard */,
 				8DBD931A24926AE100CE95C5 /* Info.plist */,
 				8DBD931224926ADF00CE95C5 /* Decisions.xcdatamodeld */,
+				8D91B62224AF2FA200899B3F /* Constance.swift */,
 			);
 			path = Decisions;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				8D2A8044249F7CDE00A9539E /* CollectionViewController.swift in Sources */,
 				8DBD931424926ADF00CE95C5 /* Decisions.xcdatamodeld in Sources */,
 				8DBE680124ACD44B009D441D /* AppBrain.swift in Sources */,
+				8D91B62324AF2FA200899B3F /* Constance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

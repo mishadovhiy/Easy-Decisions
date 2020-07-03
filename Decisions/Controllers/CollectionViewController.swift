@@ -92,12 +92,12 @@ class CollectionViewController: UIViewController {
         
         if selectedCategory != "New" {
             titleLabel.text = selectedCategory
-            titleLabel.textColor = UIColor.black
+            titleLabel.textColor = colors.title
             
         } else {
             titleLabel.text = ""
             typeTextfield.becomeFirstResponder()
-            titleLabel.textColor = UIColor.lightGray
+            titleLabel.textColor = colors.gray
         }
         
         toggleShakeButton()
@@ -164,7 +164,7 @@ class CollectionViewController: UIViewController {
     @objc func textfieldValueChanged(_ textField: UITextField) {
         
         if titleLabel.text == "" && titleLabel.text != "Save" {
-            titleLabel.textColor = UIColor.black
+            titleLabel.textColor = colors.title
         }
         
         if savePressed == false && editPressed == false {
@@ -188,7 +188,7 @@ class CollectionViewController: UIViewController {
         
         if savePressed == true {
             titleLabel.text = textField.text ?? ""
-            titleLabel.textColor = UIColor.black
+            titleLabel.textColor = colors.title
             
             
             if (typeTextfield.text ?? "").count > 1 {
@@ -215,14 +215,14 @@ class CollectionViewController: UIViewController {
                 
                 if (typeTextfield.text ?? "").count == 0 {
                     titleLabel.text = selectedCategory
-                    titleLabel.textColor = UIColor.lightGray
+                    titleLabel.textColor = colors.gray
                 } else {
                     titleLabel.text = textField.text
-                    titleLabel.textColor = UIColor.black
+                    titleLabel.textColor = colors.title
                 }
             } else {
                 titleLabel.text = textField.text
-                titleLabel.textColor = UIColor.black
+                titleLabel.textColor = colors.title
             }
             
             
@@ -294,8 +294,8 @@ class CollectionViewController: UIViewController {
     @objc func keyboardWillHide(_ notification: Notification) {
         
         if editPressed == true {
-            if titleLabel.textColor == UIColor.lightGray {
-                titleLabel.textColor = UIColor.black
+            if titleLabel.textColor == colors.gray {
+                titleLabel.textColor = colors.title
             }
         }
         
@@ -316,7 +316,7 @@ class CollectionViewController: UIViewController {
         if editPressed == false && arr.count > 1 {
             if titleLabel.text == "" {
                 titleLabel.text = "Save"
-                titleLabel.textColor = UIColor.lightGray
+                titleLabel.textColor = colors.gray
             }
         }
         
@@ -460,10 +460,10 @@ class CollectionViewController: UIViewController {
             if arr.count > 1 {
                 if selectedCategory == "New" {
                     titleLabel.text = "Save"
-                    titleLabel.textColor = UIColor.lightGray
+                    titleLabel.textColor = colors.gray
                     
                 } else {
-                    titleLabel.textColor = UIColor.black
+                    titleLabel.textColor = colors.title
                     
                 }
             }
@@ -474,6 +474,7 @@ class CollectionViewController: UIViewController {
         }
     }
     
+    let colors = Colors()
 }
 
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -488,7 +489,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         if arr.count > 0 {
             cell.titleLabel.text = arr[indexPath.row]
         }
-        cell.contentView.backgroundColor = indexPath.row == editingIndex ? UIColor.red : UIColor.green
+        cell.contentView.backgroundColor = indexPath.row == editingIndex ? colors.orange : colors.yellow
         return cell
         
     }
