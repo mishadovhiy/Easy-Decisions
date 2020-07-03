@@ -470,7 +470,9 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
         
         cell.setupCell(cell)
-        cell.titleLabel.text = arr[indexPath.row]
+        if arr.count > 0 {
+            cell.titleLabel.text = arr[indexPath.row]
+        }
         cell.contentView.backgroundColor = indexPath.row == editingIndex ? UIColor.red : UIColor.green
         return cell
         
