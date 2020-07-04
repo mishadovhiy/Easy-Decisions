@@ -20,7 +20,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y1G-bf-Enf">
                                 <rect key="frame" x="0.0" y="60" width="414" height="782"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="backgroundColor"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ValuesVCCell" id="t9y-uC-IYS" customClass="ValuesVCCell" customModule="Decisions" customModuleProvider="target">
@@ -43,6 +43,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" name="backgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="chw-GT-fGN" secondAttribute="trailing" constant="15" id="0RU-E2-nHl"/>
                                                 <constraint firstAttribute="bottom" secondItem="mtw-vr-ZHK" secondAttribute="bottom" constant="10" id="DVh-Dx-LMO"/>
@@ -83,7 +84,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
                             <constraint firstItem="Y1G-bf-Enf" firstAttribute="leading" secondItem="kTC-YO-sml" secondAttribute="leading" id="1t9-Et-cGj"/>
                             <constraint firstItem="Y1G-bf-Enf" firstAttribute="top" secondItem="C61-Uq-q3W" secondAttribute="bottom" id="8xJ-Jp-wyZ"/>
@@ -120,11 +121,11 @@
                                 <color key="textColor" name="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Wb2-5L-gXA" userLabel="buttons Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Wb2-5L-gXA" userLabel="buttons Stack View">
                                 <rect key="frame" x="10" y="54" width="394" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tmg-Ax-L6z">
-                                        <rect key="frame" x="0.0" y="0.0" width="197" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crd-Fs-JGh">
                                                 <rect key="frame" x="0.0" y="0.0" width="105" height="35"/>
@@ -143,16 +144,16 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="crd-Fs-JGh" firstAttribute="top" secondItem="tmg-Ax-L6z" secondAttribute="top" id="1VD-MO-VhM"/>
-                                            <constraint firstAttribute="trailing" secondItem="crd-Fs-JGh" secondAttribute="trailing" priority="750" constant="10" id="Xe8-xC-ucj"/>
+                                            <constraint firstAttribute="trailing" secondItem="crd-Fs-JGh" secondAttribute="trailing" priority="750" id="Xe8-xC-ucj"/>
                                             <constraint firstAttribute="bottom" secondItem="crd-Fs-JGh" secondAttribute="bottom" id="mCY-BI-LSO"/>
                                             <constraint firstItem="crd-Fs-JGh" firstAttribute="leading" secondItem="tmg-Ax-L6z" secondAttribute="leading" id="q7q-kV-xnT"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xxy-tR-Bw3">
-                                        <rect key="frame" x="197" y="0.0" width="197" height="35"/>
+                                        <rect key="frame" x="207" y="0.0" width="187" height="35"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvU-xK-gbW">
-                                                <rect key="frame" x="0.0" y="0.0" width="197" height="35"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="187" height="35"/>
                                                 <color key="backgroundColor" name="blueColor"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                 <state key="normal" title="Shake">
@@ -205,7 +206,7 @@
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7i-Qw-W8T">
                                 <rect key="frame" x="0.0" y="145.5" width="414" height="656.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" name="backgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="5" id="JS0-rE-mzQ">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -242,7 +243,7 @@
                             </collectionView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type something" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0QH-D6-mKU">
                                 <rect key="frame" x="10" y="812" width="394" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="0.97999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="backgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="sSY-ts-EZu"/>
                                 </constraints>
@@ -271,7 +272,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
                             <constraint firstItem="OaJ-ft-y6S" firstAttribute="leading" secondItem="9jm-Dr-Xwa" secondAttribute="leading" constant="10" id="2qk-Kg-y9O"/>
                             <constraint firstItem="0QH-D6-mKU" firstAttribute="top" secondItem="t7i-Qw-W8T" secondAttribute="bottom" constant="10" id="Eob-MN-AAm"/>
@@ -321,19 +322,22 @@
     </scenes>
     <resources>
         <namedColor name="GreyColor">
-            <color red="0.81960784313725488" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81999999284744263" green="0.80400002002716064" blue="0.80400002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="backgroundColor">
+            <color red="0.86699998378753662" green="0.86699998378753662" blue="0.86699998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="blueColor">
-            <color red="0.55686274509803924" green="0.7803921568627451" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55699998140335083" green="0.77999997138977051" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="purpleColor">
-            <color red="0.85490196078431369" green="0.55686274509803924" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.85500001907348633" green="0.55699998140335083" blue="0.99199998378753662" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textColor">
-            <color red="0.27843137254901962" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.27799999713897705" green="0.27799999713897705" blue="0.27799999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="titleColor">
-            <color red="0.49803921568627452" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.49799999594688416" green="0.49000000953674316" blue="0.49000000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
