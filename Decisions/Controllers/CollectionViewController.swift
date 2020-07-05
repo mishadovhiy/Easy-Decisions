@@ -11,6 +11,7 @@ import CoreData
 
 var selectedCategory = ""
 var brain = AppBrain()
+let colors = Colors()
 
 class CollectionViewController: UIViewController {
     
@@ -24,6 +25,8 @@ class CollectionViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shakeButton: UIButton!
+    @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var messageLabel: UILabel!
     
     var editingIndex: Int? = nil
     var arr = [""]
@@ -65,10 +68,18 @@ class CollectionViewController: UIViewController {
         }
         
         saveButton.layer.cornerRadius = 6
-        
         typeTextfield.addTarget(self, action: #selector(textfieldValueChanged), for: .editingChanged)
         savePressed = false
         editPressed = false
+        
+        messageView.layer.masksToBounds = true
+        messageView.layer.cornerRadius = 6
+        messageView.backgroundColor = colors.lightYellow
+        
+        let hideMessageGesture = UISwipeGestureRecognizer(target: self, action: #selector(hideMessageSwipped))
+        hideMessageGesture.direction = .up
+        messageView.isUserInteractionEnabled = true
+        messageView.addGestureRecognizer(hideMessageGesture)
 
     }
     
@@ -101,6 +112,9 @@ class CollectionViewController: UIViewController {
         }
         
         toggleShakeButton()
+        typeTextfield.text = ""
+        typeTextfield.placeholder = "Type something"
+        messageView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -250, 0)
         
     }
     
@@ -269,6 +283,13 @@ class CollectionViewController: UIViewController {
         
     }
     
+    @objc func hideMessageSwipped(_ sender: UISwipeGestureRecognizer? = nil) {
+        
+        UIView.animate(withDuration: 0.6) {
+            self.messageView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -250, 0)
+        }
+    }
+    
     @objc func keyboardWillShow(_ notification: Notification) {
         
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -373,7 +394,8 @@ class CollectionViewController: UIViewController {
             }
             brain.loadItems()
             brain.defaults.setValue("\(selectedCategory)", forKey: "selectedCategory")
-            brain.showError(text: "performSaving \(selectedCategory)")
+            showMessage(with: "\(selectedCategory) Saved!")
+            
             UIView.animate(withDuration: 0.3) {
                 self.saveButton.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
             }
@@ -381,14 +403,16 @@ class CollectionViewController: UIViewController {
                 self.saveButton.alpha = 0
             }
         } else {
-            brain.showError(text: "cant save")
+            UIImpactFeedbackGenerator().impactOccurred()
+            showMessage(with: "Can't save as \(titleLabel.text ?? "")", color: colors.error ?? UIColor.red)
         }
         
     }
     
     func performEditing() {
         
-        if titleLabel.text != "" && arr.count > 1 {
+        //if titleLabel.text != "" && arr.count > 1 {
+        if (arr.count > 1) && (titleLabel.text != "" && titleLabel.text != " " && titleLabel.text != "Save" && titleLabel.text != "New") {
             if editPressed == true {
                 editPressed = false
                 typeTextfield.endEditing(true)
@@ -407,9 +431,12 @@ class CollectionViewController: UIViewController {
             }
             brain.loadItems()
             brain.defaults.setValue("\(selectedCategory)", forKey: "selectedCategory")
-            brain.showError(text: "performEditing")
+            print("edited")
             saveButton.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
             saveButton.alpha = 0
+        } else {
+            UIImpactFeedbackGenerator().impactOccurred()
+            showMessage(with: "Can't save changes for \(titleLabel.text ?? "")", color: colors.error ?? UIColor.red)
         }
         
     }
@@ -474,7 +501,29 @@ class CollectionViewController: UIViewController {
         }
     }
     
-    let colors = Colors()
+    func showMessage(with text: String, color: UIColor = colors.success ?? UIColor.white) {
+        
+        messageView.backgroundColor = colors.success
+        messageLabel.text = text
+        UIView.animate(withDuration: 0.6) {
+            self.messageView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 0, 0)
+           
+        }
+        
+        UIView.animate(withDuration: 0.9) {
+            self.messageView.backgroundColor = color
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (action) in
+            UIView.animate(withDuration: 0.6) {
+                self.messageView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -250, 0)
+                self.messageView.backgroundColor = colors.success
+                self.messageLabel.text = ""
+            }
+        }
+        
+    }
+    
 }
 
 extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {

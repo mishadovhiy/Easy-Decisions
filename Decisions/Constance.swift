@@ -18,4 +18,8 @@ struct Colors {
     let text = UIColor.init(named: "textColor")
     let yellow = UIColor.init(named: "yellowColor")
     let orange = UIColor.init(named: "orangeColor")
+    let lightGrey = UIColor.init(named: "lightGreyColor")
+    let lightYellow = UIColor.init(named: "lightYellowColor")
+    let success = UIColor.init(named: "successColor")
+    let error = UIColor.init(named: "errorColor")
 }

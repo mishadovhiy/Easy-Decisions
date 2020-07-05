@@ -20,9 +20,23 @@ class ValuesViewController: UIViewController {
         getData()
         tableView.delegate = self
         tableView.dataSource = self
-        
         closeButton.layer.cornerRadius = 6
         
+        let hideKeyboardGesture = UISwipeGestureRecognizer(target: self, action: #selector(closeSwiped))
+        hideKeyboardGesture.direction = .down
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(hideKeyboardGesture)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(closeVCSwipe(sender:)), for: UIControl.Event.valueChanged)
+        refreshControl.backgroundColor = UIColor.clear
+        refreshControl.tintColor = UIColor.clear
+        tableView.addSubview(refreshControl)
+        
+    }
+    
+    @objc func closeVCSwipe(sender:AnyObject) {
+        closePressed(closeButton)
     }
     
     func getData() {
@@ -39,6 +53,10 @@ class ValuesViewController: UIViewController {
     
     @IBAction func closePressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func closeSwiped(_ sender: UISwipeGestureRecognizer? = nil) {
+        closePressed(closeButton)
     }
     
 }
@@ -59,11 +77,22 @@ extension ValuesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ValuesVCCell", for: indexPath) as! ValuesVCCell
+    
         cell.cellSetup(tableData: tableData, i: indexPath.row)
+        
         if indexPath.section == 1 {
             cell.titleLabel.text = "New"
             cell.valuesLabel.text = ""
         }
+        
+        if indexPath.section != 1 {
+            cell.cellBackgroundView.backgroundColor = colors.lightGrey
+            cell.titleLabel.textAlignment = .left
+        } else {
+            cell.cellBackgroundView.backgroundColor = colors.lightYellow
+            cell.titleLabel.textAlignment = .center
+        }
+        
         return cell
     }
     
@@ -103,13 +132,18 @@ extension ValuesViewController: UITableViewDelegate, UITableViewDataSource {
 class ValuesVCCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valuesLabel: UILabel!
+    @IBOutlet weak var cellBackgroundView: UIView!
     
     func cellSetup(tableData: [String], i: Int) {
         if tableData.count > 0 {
             let data = tableData[i]
             
+            cellBackgroundView.layer.masksToBounds = true
+            cellBackgroundView.layer.cornerRadius = 6
+            
             titleLabel.text = data
             valuesLabel.text = ""
+            
             for i in 0..<brain.allData.count {
                 if brain.allData[i].title == data {
                     if valuesLabel.text != "" {
@@ -120,6 +154,25 @@ class ValuesVCCell: UITableViewCell {
                     
                 }
             }
+            
+            
+            
         }
     }
+    
+    func dataFor(title: String) {
+        for i in 0..<brain.allData.count {
+            if brain.allData[i].title == title {
+                if valuesLabel.text != "" {
+                    valuesLabel.text = (valuesLabel.text ?? "") + ", " + (brain.allData[i].value ?? "")
+                } else {
+                    valuesLabel.text = brain.allData[i].value ?? ""
+                }
+                
+            }
+        }
+    }
+    
+    
+    
 }
