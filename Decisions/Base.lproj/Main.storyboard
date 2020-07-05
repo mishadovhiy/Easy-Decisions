@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y1G-bf-Enf">
-                                <rect key="frame" x="0.0" y="60" width="414" height="782"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="792"/>
                                 <color key="backgroundColor" name="backgroundColor"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <prototypes>
@@ -62,21 +62,22 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C61-Uq-q3W" userLabel="title Stack View">
-                                <rect key="frame" x="10" y="0.0" width="394" height="60"/>
+                                <rect key="frame" x="10" y="10" width="394" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeB-7n-LEz">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                         <color key="textColor" name="titleColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcV-aG-fDE">
-                                        <rect key="frame" x="334" y="0.0" width="60" height="60"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcV-aG-fDE">
+                                        <rect key="frame" x="364" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" name="GreyColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="Ga4-sV-0hB"/>
-                                            <constraint firstAttribute="height" constant="60" id="Riu-V6-HvF"/>
+                                            <constraint firstAttribute="width" constant="30" id="Ga4-sV-0hB"/>
+                                            <constraint firstAttribute="height" constant="30" id="Riu-V6-HvF"/>
                                         </constraints>
-                                        <state key="normal" title="close"/>
+                                        <state key="normal" image="closeIcon"/>
                                         <connections>
                                             <action selector="closePressed:" destination="M8k-D4-L3l" eventType="touchUpInside" id="2lR-hE-hqW"/>
                                         </connections>
@@ -87,17 +88,18 @@
                         <color key="backgroundColor" name="backgroundColor"/>
                         <constraints>
                             <constraint firstItem="Y1G-bf-Enf" firstAttribute="leading" secondItem="kTC-YO-sml" secondAttribute="leading" id="1t9-Et-cGj"/>
-                            <constraint firstItem="Y1G-bf-Enf" firstAttribute="top" secondItem="C61-Uq-q3W" secondAttribute="bottom" id="8xJ-Jp-wyZ"/>
-                            <constraint firstItem="C61-Uq-q3W" firstAttribute="top" secondItem="aYJ-Nc-Jkh" secondAttribute="top" id="Dk4-Zg-NOh"/>
+                            <constraint firstItem="Y1G-bf-Enf" firstAttribute="top" secondItem="C61-Uq-q3W" secondAttribute="bottom" constant="10" id="8xJ-Jp-wyZ"/>
                             <constraint firstAttribute="bottom" secondItem="Y1G-bf-Enf" secondAttribute="bottom" id="Ebw-vL-wEe"/>
                             <constraint firstItem="C61-Uq-q3W" firstAttribute="leading" secondItem="kTC-YO-sml" secondAttribute="leading" constant="10" id="axH-2D-pe4"/>
                             <constraint firstItem="kTC-YO-sml" firstAttribute="trailing" secondItem="C61-Uq-q3W" secondAttribute="trailing" constant="10" id="oqe-bV-acP"/>
+                            <constraint firstItem="C61-Uq-q3W" firstAttribute="top" secondItem="kTC-YO-sml" secondAttribute="top" constant="10" id="rbw-jm-3c0"/>
                             <constraint firstItem="kTC-YO-sml" firstAttribute="trailing" secondItem="Y1G-bf-Enf" secondAttribute="trailing" id="uEt-6t-e2u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kTC-YO-sml"/>
                     </view>
                     <navigationItem key="navigationItem" id="cAc-rY-2Yf"/>
                     <connections>
+                        <outlet property="closeButton" destination="mcV-aG-fDE" id="PdT-Qw-8mH"/>
                         <outlet property="tableView" destination="Y1G-bf-Enf" id="OdZ-Lx-gaP"/>
                         <segue destination="jQZ-qB-jCh" kind="unwind" identifier="quite" unwindAction="unwindToViewControllerAWithSegue:" id="C5v-T9-IeE"/>
                     </connections>
@@ -249,7 +251,7 @@
                                 </constraints>
                                 <color key="textColor" name="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="light"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7r-a4-gcS">
                                 <rect key="frame" x="15" y="119" width="344" height="26.5"/>
@@ -257,14 +259,14 @@
                                 <color key="textColor" name="titleColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDl-4C-kMj">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDl-4C-kMj">
                                 <rect key="frame" x="369" y="119" width="30" height="30"/>
                                 <color key="backgroundColor" name="purpleColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="A3N-xR-Sim"/>
                                     <constraint firstAttribute="width" constant="30" id="jlK-8m-Bvi"/>
                                 </constraints>
-                                <state key="normal" title="+">
+                                <state key="normal" image="addIcon">
                                     <color key="titleColor" name="textColor"/>
                                 </state>
                                 <connections>
@@ -321,6 +323,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addIcon" width="17" height="17"/>
+        <image name="closeIcon" width="13" height="13"/>
         <namedColor name="GreyColor">
             <color red="0.81999999284744263" green="0.80400002002716064" blue="0.80400002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

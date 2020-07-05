@@ -64,7 +64,7 @@ class CollectionViewController: UIViewController {
             buttonsCollection[i].layer.masksToBounds = true
         }
         
-        saveButton.layer.cornerRadius = saveButton.bounds.width / 2
+        saveButton.layer.cornerRadius = 6
         
         typeTextfield.addTarget(self, action: #selector(textfieldValueChanged), for: .editingChanged)
         savePressed = false

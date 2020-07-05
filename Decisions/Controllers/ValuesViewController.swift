@@ -11,6 +11,7 @@ import CoreData
 
 class ValuesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var closeButton: UIButton!
     var tableData = [""]
     
     override func viewDidLoad() {
@@ -19,6 +20,8 @@ class ValuesViewController: UIViewController {
         getData()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        closeButton.layer.cornerRadius = 6
         
     }
     
