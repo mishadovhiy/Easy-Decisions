@@ -314,6 +314,7 @@ class CollectionViewController: UIViewController {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         
+        typeTextfield.placeholder = "Type something"
         if editPressed == true {
             if titleLabel.textColor == colors.gray {
                 titleLabel.textColor = colors.title
@@ -326,6 +327,7 @@ class CollectionViewController: UIViewController {
         }
         editingIndex = nil
         if editPressed == true {
+            
             performEditing()
             editPressed = false
         }
@@ -403,8 +405,10 @@ class CollectionViewController: UIViewController {
                 self.saveButton.alpha = 0
             }
         } else {
-            UIImpactFeedbackGenerator().impactOccurred()
-            showMessage(with: "Can't save as \(titleLabel.text ?? "")", color: colors.error ?? UIColor.red)
+            if arr.count < 1 {
+                UIImpactFeedbackGenerator().impactOccurred()
+                showMessage(with: "Can't save as \(titleLabel.text ?? "")", color: colors.error ?? UIColor.red)
+            }
         }
         
     }

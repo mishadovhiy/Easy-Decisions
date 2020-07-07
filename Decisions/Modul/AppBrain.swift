@@ -46,7 +46,6 @@ struct AppBrain {
         loadItems()
     }
     
-    
     mutating func loadItems(_ request: NSFetchRequest<Values> = Values.fetchRequest(), predicate: NSPredicate? = nil) {
         
         do { allData = try context.fetch(request)
