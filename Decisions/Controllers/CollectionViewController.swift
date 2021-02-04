@@ -300,16 +300,12 @@ class CollectionViewController: UIViewController {
                 collectionView.contentInset.bottom = keyboardHeight
                 let bottomPadding = view.safeAreaInsets.bottom
                 print(bottomPadding)
-                
-                
+
                 UIView.animate(withDuration: 0.3) {
                     self.typeTextfield.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, (keyboardHeight - bottomPadding - 10) * (-1), 0)
                 }
-                
             }
-            
         }
-        
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {

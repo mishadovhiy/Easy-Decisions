@@ -19,9 +19,10 @@ struct AppBrain {
     func createDefaultCategories() {
         
         let dicktionary = [
-            ValuesStract(title: "Movies", values: ["one", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two", "two"]),
-            ValuesStract(title: "Other", values: ["Three", "Four"]),
-            ValuesStract(title: "true Or False", values: ["True", "False"])
+            ValuesStract(title: "Genres", values: ["Comedy", "Thriller", "Mystery", "Horror", "Drama", "Melodrama", "History", "Psychological thriller"]),
+            ValuesStract(title: "Pick a month", values: ["January", "February", "March", "April", "Friday", "May", "June", "August", "September", "October", "November", "December"]),
+            ValuesStract(title: "Pick a day", values: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]),
+            ValuesStract(title: "Yes / No", values: ["Yes", "No"])
         ]
         
         for k in 0..<dicktionary.count {
