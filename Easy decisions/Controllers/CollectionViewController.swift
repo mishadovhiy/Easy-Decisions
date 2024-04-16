@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 
 var selectedCategory = ""
-var brain = AppBrain()
-let colors = Colors()
 
 class CollectionViewController: UIViewController {
     
@@ -74,7 +72,7 @@ class CollectionViewController: UIViewController {
         
         messageView.layer.masksToBounds = true
         messageView.layer.cornerRadius = 6
-        messageView.backgroundColor = colors.lightYellow
+        messageView.backgroundColor = Colors.lightYellow
         
         let hideMessageGesture = UISwipeGestureRecognizer(target: self, action: #selector(hideMessageSwipped))
         hideMessageGesture.direction = .up
@@ -103,12 +101,12 @@ class CollectionViewController: UIViewController {
         
         if selectedCategory != "New" {
             titleLabel.text = selectedCategory
-            titleLabel.textColor = colors.title
+            titleLabel.textColor = Colors.title
             
         } else {
             titleLabel.text = ""
             typeTextfield.becomeFirstResponder()
-            titleLabel.textColor = colors.gray
+            titleLabel.textColor = Colors.gray
         }
         
         toggleShakeButton()
@@ -178,7 +176,7 @@ class CollectionViewController: UIViewController {
     @objc func textfieldValueChanged(_ textField: UITextField) {
         
         if titleLabel.text == "" && titleLabel.text != "Save" {
-            titleLabel.textColor = colors.title
+            titleLabel.textColor = Colors.title
         }
         
         if savePressed == false && editPressed == false {
@@ -202,7 +200,7 @@ class CollectionViewController: UIViewController {
         
         if savePressed == true {
             titleLabel.text = textField.text ?? ""
-            titleLabel.textColor = colors.title
+            titleLabel.textColor = Colors.title
             
             
             if (typeTextfield.text ?? "").count > 1 {
@@ -229,14 +227,14 @@ class CollectionViewController: UIViewController {
                 
                 if (typeTextfield.text ?? "").count == 0 {
                     titleLabel.text = selectedCategory
-                    titleLabel.textColor = colors.gray
+                    titleLabel.textColor = Colors.gray
                 } else {
                     titleLabel.text = textField.text
-                    titleLabel.textColor = colors.title
+                    titleLabel.textColor = Colors.title
                 }
             } else {
                 titleLabel.text = textField.text
-                titleLabel.textColor = colors.title
+                titleLabel.textColor = Colors.title
             }
             
             
@@ -312,8 +310,8 @@ class CollectionViewController: UIViewController {
         
         typeTextfield.placeholder = "Type something"
         if editPressed == true {
-            if titleLabel.textColor == colors.gray {
-                titleLabel.textColor = colors.title
+            if titleLabel.textColor == Colors.gray {
+                titleLabel.textColor = Colors.title
             }
         }
         
@@ -335,7 +333,7 @@ class CollectionViewController: UIViewController {
         if editPressed == false && arr.count > 1 {
             if titleLabel.text == "" {
                 titleLabel.text = "Save"
-                titleLabel.textColor = colors.gray
+                titleLabel.textColor = Colors.gray
             }
         }
         
@@ -369,7 +367,7 @@ class CollectionViewController: UIViewController {
             DispatchQueue.main.async {
 
                 self.getSelectedData()
-                brain.loadItems()
+                self.brain.loadItems()
                 self.collectionView.reloadData()
 
             }
@@ -382,10 +380,9 @@ class CollectionViewController: UIViewController {
             savePressed = false
             selectedCategory = titleLabel.text ?? ""
             typeTextfield.text = ""
-            typeTextfield.placeholder = "Type something"
-            
+            typeTextfield.placeholder = "Type something, comma separated"
             for i in 0..<arr.count {
-                let new = Values(context: brain.context)
+                let new = Vlues(context: brain.context)
                 new.title = selectedCategory
                 new.value = arr[i]
                 brain.saveItems()
@@ -403,7 +400,7 @@ class CollectionViewController: UIViewController {
         } else {
             if arr.count < 1 {
                 UIImpactFeedbackGenerator().impactOccurred()
-                showMessage(with: "Can't save as \(titleLabel.text ?? "")", color: colors.error ?? UIColor.red)
+                showMessage(with: "Can't save as \(titleLabel.text ?? "")", color: Colors.error ?? UIColor.red)
             }
         }
         
@@ -422,9 +419,8 @@ class CollectionViewController: UIViewController {
             
             brain.deleteData(with: selectedCategory)
             selectedCategory = titleLabel.text ?? ""
-            
             for i in 0..<arr.count {
-                let new = Values(context: brain.context)
+                let new = Vlues(context: brain.context)
                 new.title = selectedCategory
                 new.value = arr[i]
                 brain.saveItems()
@@ -436,7 +432,7 @@ class CollectionViewController: UIViewController {
             saveButton.alpha = 0
         } else {
             UIImpactFeedbackGenerator().impactOccurred()
-            showMessage(with: "Can't save changes for \(titleLabel.text ?? "")", color: colors.error ?? UIColor.red)
+            showMessage(with: "Can't save changes for \(titleLabel.text ?? "")", color: Colors.error ?? UIColor.red)
         }
         
     }
@@ -464,7 +460,7 @@ class CollectionViewController: UIViewController {
             print("first")
             brain.createDefaultCategories()
             brain.loadItems()
-            selectedCategory = brain.allData[0].title ?? ""
+            selectedCategory = brain.allData.first?.title ?? ""
             getSelectedData()
             print(selectedCategory)
             print(brain.allData.count, "alldata")
@@ -473,9 +469,9 @@ class CollectionViewController: UIViewController {
         }
     }
     
-    func addToCollection(_ textField: UITextField) {
-        if textField.text != "" {
-            arr.append(textField.text ?? "")
+    func addToCollection(_ text: String) {
+        if text != "" {
+            arr.append(text)
             collectionView.reloadData()
             typeTextfield.text = ""
             toggleShakeButton()
@@ -487,10 +483,10 @@ class CollectionViewController: UIViewController {
             if arr.count > 1 {
                 if selectedCategory == "New" {
                     titleLabel.text = "Save"
-                    titleLabel.textColor = colors.gray
+                    titleLabel.textColor = Colors.gray
                     
                 } else {
-                    titleLabel.textColor = colors.title
+                    titleLabel.textColor = Colors.title
                     
                 }
             }
@@ -501,9 +497,9 @@ class CollectionViewController: UIViewController {
         }
     }
     
-    func showMessage(with text: String, color: UIColor = colors.success ?? UIColor.white) {
+    func showMessage(with text: String, color: UIColor = Colors.success ?? UIColor.white) {
         
-        messageView.backgroundColor = colors.success
+        messageView.backgroundColor = Colors.success
         messageLabel.text = text
         UIView.animate(withDuration: 0.6) {
             self.messageView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, 0, 0)
@@ -517,7 +513,7 @@ class CollectionViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { (action) in
             UIView.animate(withDuration: 0.6) {
                 self.messageView.layer.transform = CATransform3DTranslate(CATransform3DIdentity, 0, -250, 0)
-                self.messageView.backgroundColor = colors.success
+                self.messageView.backgroundColor = Colors.success
                 self.messageLabel.text = ""
             }
         }
@@ -538,7 +534,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
         if arr.count > 0 {
             cell.titleLabel.text = arr[indexPath.row]
         }
-        cell.contentView.backgroundColor = indexPath.row == editingIndex ? colors.orange : colors.yellow
+        cell.contentView.backgroundColor = indexPath.row == editingIndex ? Colors.orange : Colors.yellow
         return cell
         
     }
@@ -564,7 +560,9 @@ extension CollectionViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if savePressed == false && editPressed == false {
             if editingIndex == nil {
-                addToCollection(textField)
+                brain.tokenize(textField.text ?? "").forEach {
+                    addToCollection($0)
+                }
             }
             
             if editingIndex != nil {

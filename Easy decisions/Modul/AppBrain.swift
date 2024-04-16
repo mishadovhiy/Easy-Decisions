@@ -13,7 +13,7 @@ struct AppBrain {
     
     let defaults = UserDefaults.standard
     
-    var allData = [Values]()
+    var allData = [Vlues]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func createDefaultCategories() {
@@ -24,10 +24,9 @@ struct AppBrain {
             ValuesStract(title: "Pick a day", values: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]),
             ValuesStract(title: "Yes / No", values: ["Yes", "No"])
         ]
-        
         for k in 0..<dicktionary.count {
             for i in 0..<dicktionary[k].values.count {
-                let new = Values(context: context)
+                let new = Vlues(context: context)
                 new.title = dicktionary[k].title
                 new.value = dicktionary[k].values[i]
                 saveItems()
@@ -37,7 +36,6 @@ struct AppBrain {
     }
     
     mutating func deleteData(with title: String) {
-
         for i in 0..<allData.count {
             if allData[i].title == title {
                 context.delete(allData[i])
@@ -47,15 +45,13 @@ struct AppBrain {
         loadItems()
     }
     
-    mutating func loadItems(_ request: NSFetchRequest<Values> = Values.fetchRequest(), predicate: NSPredicate? = nil) {
-        
+    mutating func loadItems(_ request: NSFetchRequest<Vlues> = Vlues.fetchRequest(), predicate: NSPredicate? = nil) {
         do { allData = try context.fetch(request)
         } catch { print("\n\nERROR FETCHING DATA FROM CONTEXTE\n\n", error)}
 
     }
     
     func saveItems() {
-        
         do { try context.save()
         } catch { print("\n\nERROR ENCODING CONTEXT\n\n", error) }
     }
@@ -64,6 +60,12 @@ struct AppBrain {
         print(text)
     }
     
+    
+    func tokenize(_ fullString:String) -> [String] {
+        return Array(fullString.split(separator: ",")).compactMap {
+            String($0)
+        }
+    }
 }
 
 

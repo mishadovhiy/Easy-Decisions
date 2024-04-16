@@ -86,10 +86,10 @@ extension ValuesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if indexPath.section != 1 {
-            cell.cellBackgroundView.backgroundColor = colors.lightGrey
+            cell.cellBackgroundView.backgroundColor = Colors.lightGrey
             cell.titleLabel.textAlignment = .left
         } else {
-            cell.cellBackgroundView.backgroundColor = colors.lightYellow
+            cell.cellBackgroundView.backgroundColor = Colors.lightYellow
             cell.titleLabel.textAlignment = .center
         }
         
@@ -115,7 +115,7 @@ extension ValuesViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
                 
-                brain.deleteData(with: self.tableData[indexPath.row])
+                self.brain.deleteData(with: self.tableData[indexPath.row])
                 DispatchQueue.main.async {
                     self.getData()
                 }
@@ -143,7 +143,9 @@ class ValuesVCCell: UITableViewCell {
             
             titleLabel.text = data
             valuesLabel.text = ""
-            
+            guard let brain = AppDelegate.shared?.brain else {
+                return
+            }
             for i in 0..<brain.allData.count {
                 if brain.allData[i].title == data {
                     if valuesLabel.text != "" {
@@ -161,6 +163,9 @@ class ValuesVCCell: UITableViewCell {
     }
     
     func dataFor(title: String) {
+        guard let brain = AppDelegate.shared?.brain else {
+            return
+        }
         for i in 0..<brain.allData.count {
             if brain.allData[i].title == title {
                 if valuesLabel.text != "" {
